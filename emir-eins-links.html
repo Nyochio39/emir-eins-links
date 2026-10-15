@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMIR-EINS Kamishiro | Content Creator / Music Producer</title>
+  <meta name="description" content="รวมทุกช่องทางติดตาม EMIR-EINS Kamishiro – Content Creator / Music Producer">
+  <meta name="theme-color" content="#52e6f8">
+  <link rel="icon" type="image/png" href="3.png">
+
+  <!-- ตั้งธีมก่อนโหลดหน้า (กันกะพริบ) -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ================= สี ================= */
+    :root {
+      --primary: #52e6f8;
+      --primary-deep: #22c3dc;
+      --primary-text: #0a8ea5;
+      --primary-soft: #dcf9fd;
+      --pink: #ff8fb8;
+
+      --bg: #eefcff;
+      --surface: #ffffff;
+      --surface-2: #f3fdff;
+      --text: #10343b;
+      --muted: #5d8088;
+      --border: rgba(82, 230, 248, .35);
+      --shadow: 0 16px 36px rgba(28, 180, 207, .25);
+      --radius: 22px;
+    }
+    [data-theme="dark"] {
+      --primary-deep: #13a3bb;
+      --primary-text: #52e6f8;
+      --primary-soft: #0f3036;
+      --bg: #071518;
+      --surface: #0e2328;
+      --surface-2: #122c32;
+      --text: #e4fbfe;
+      --muted: #8bb3ba;
+      --border: rgba(82, 230, 248, .22);
+      --shadow: 0 16px 36px rgba(0, 0, 0, .55);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+
+    body {
+      font-family: 'Prompt', sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, var(--primary-soft) 0, transparent 40%),
+        radial-gradient(circle at 100% 100%, var(--primary-soft) 0, transparent 45%),
+        var(--bg);
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 28px 14px 40px;
+      transition: background-color .4s, color .4s;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 620px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* =========================================================
+       HERO CARD
+       ========================================================= */
+    .hero {
+      container-type: inline-size;
+      background: var(--surface);
+      border-radius: 28px;
+      padding: 3.2% 3.2% 3.6%;
+      box-shadow: var(--shadow);
+      animation: fadeUp .7s ease both;
+      transition: background .4s;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 3.2cqw;
+      padding: 0 1cqw;
+      margin-bottom: 10cqw;
+      position: relative;
+      z-index: 10;
+    }
+    .top-btn {
+      color: var(--primary);
+      font-size: 5cqw;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      position: relative;
+      transition: transform .25s, color .25s;
+    }
+    .top-btn:hover { transform: translateY(-3px); color: var(--primary-deep); }
+
+    .top-btn.logo {
+      width: 9.5cqw;
+      height: 9.5cqw;
+      border-radius: 2.6cqw;
+      background: var(--primary);
+      color: #fff;
+      font-size: 5cqw;
+      overflow: hidden;
+      box-shadow: 0 6px 14px rgba(82, 230, 248, .45);
+    }
+    .top-btn.logo:hover { color: #fff; }
+    .logo-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .logo-fallback { display: none; }
+    .top-btn.logo.no-img .logo-img { display: none; }
+    .top-btn.logo.no-img .logo-fallback { display: inline-block; }
+
+    .globe-chat .fa-comment {
+      position: absolute;
+      top: -1.2cqw;
+      right: -1.6cqw;
+      font-size: 2.6cqw;
+    }
+
+    .theme-toggle { margin-left: auto; font-size: 4.4cqw; }
+    .theme-toggle .fa-sun { display: none; }
+    [data-theme="dark"] .theme-toggle .fa-sun { display: inline-block; }
+    [data-theme="dark"] .theme-toggle .fa-moon { display: none; }
+
+    .hero-panel {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      border-radius: 5cqw;
+    }
+    .panel-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      overflow: hidden;
+      background: linear-gradient(135deg, #7af0ff 0%, var(--primary) 45%, var(--primary-deep) 100%);
+      box-shadow: 0 14px 30px rgba(28, 180, 207, .35);
+    }
+    .blob { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, .16); }
+    .blob-1 { width: 62%; aspect-ratio: 1; right: -16%; top: -30%; }
+    .blob-2 { width: 40%; aspect-ratio: 1; left: -14%; bottom: -26%; background: rgba(255,255,255,.12); }
+    .blob-3 {
+      width: 85%; height: 26%; left: -12%; top: 42%;
+      border-radius: 999px; transform: rotate(-16deg);
+      background: rgba(255, 255, 255, .09);
+    }
+    .blob-4 { width: 16%; aspect-ratio: 1; left: 44%; top: 8%; background: rgba(255,255,255,.1); }
+    .blob-5 {
+      width: 55%; height: 14%; right: -10%; bottom: 10%;
+      border-radius: 999px; transform: rotate(-16deg);
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .hero-text {
+      position: absolute;
+      left: 6%;
+      top: 13%;
+      width: 56%;
+      z-index: 6;
+      color: #fff;
+    }
+    .hero-name {
+      font-size: 10.2cqw;
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: -.3cqw;
+      text-shadow: 0 .6cqw 2cqw rgba(0, 80, 95, .35);
+      white-space: nowrap;
+    }
+    .hero-sub {
+      font-size: 5.6cqw;
+      font-weight: 300;
+      letter-spacing: .3cqw;
+      margin: .6cqw 0 3.4cqw;
+      text-shadow: 0 .4cqw 1.6cqw rgba(0, 80, 95, .3);
+    }
+    .badge {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary-text);
+      font-size: 2.15cqw;
+      font-weight: 600;
+      letter-spacing: .15cqw;
+      padding: 1.3cqw 2.8cqw;
+      border-radius: 999px;
+      box-shadow: 0 1cqw 2.4cqw rgba(0, 0, 0, .12);
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .badge { color: #0a8ea5; }
+
+    .quote {
+      position: absolute;
+      left: 6%;
+      bottom: 9%;
+      width: 46%;
+      z-index: 6;
+      color: #fff;
+      font-size: 2.7cqw;
+      font-weight: 400;
+      line-height: 1.55;
+      text-shadow: 0 .4cqw 1.4cqw rgba(0, 80, 95, .35);
+    }
+    .quote::before { content: "“"; font-weight: 800; font-size: 4.2cqw; line-height: 0; vertical-align: -1cqw; margin-right: .6cqw; }
+    .quote::after  { content: "”"; font-weight: 800; font-size: 4.2cqw; line-height: 0; vertical-align: -1cqw; margin-left: .6cqw; }
+
+    .char-wrap {
+      position: absolute;
+      right: -1%;
+      bottom: 0;
+      height: 124%;
+      width: 56%;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .char-wrap img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      object-position: bottom right;
+    }
+    .char-shadow { transform: translate(3%, 2%); filter: brightness(0) blur(2px); opacity: .22; }
+    .character {
+      filter: drop-shadow(0 1.4cqw 2cqw rgba(0, 60, 75, .35));
+      animation: floaty 5s ease-in-out infinite;
+    }
+    .char-wrap.no-img { display: none; }
+
+    .signature {
+      position: absolute;
+      right: 6%;
+      top: 38%;
+      width: 50%;
+      z-index: 5;
+      transform: rotate(-8deg);
+      filter: invert(1);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+    .signature.hidden { display: none; }
+
+    .heart {
+      position: absolute;
+      z-index: 5;
+      color: #fff;
+      pointer-events: none;
+      animation: beat 1.6s ease-in-out infinite;
+    }
+    .heart-1 { right: 7%;  top: 34%; font-size: 3cqw; }
+    .heart-2 { right: 50%; top: 66%; font-size: 2.4cqw; animation-delay: .4s; }
+    .heart-3 { right: 12%; top: 80%; font-size: 2cqw; color: var(--pink); animation-delay: .8s; }
+
+    /* ================= หัวข้อส่วน ================= */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--primary-text);
+      margin-bottom: 12px;
+    }
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+    }
+
+    /* ================= การ์ดลิงก์ ================= */
+    .links { display: flex; flex-direction: column; gap: 12px; }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 14px rgba(28, 180, 207, .1);
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s, border-color .25s, background .4s;
+      animation: fadeUp .6s ease both;
+    }
+    .link-card:nth-child(2) { animation-delay: .05s; }
+    .link-card:nth-child(3) { animation-delay: .10s; }
+    .link-card:nth-child(4) { animation-delay: .15s; }
+    .link-card:nth-child(5) { animation-delay: .20s; }
+    .link-card:nth-child(6) { animation-delay: .25s; }
+    .link-card:nth-child(7) { animation-delay: .30s; }
+    .link-card:nth-child(8) { animation-delay: .35s; }
+    .link-card:nth-child(9) { animation-delay: .40s; }
+
+    .link-card::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 0;
+      background: var(--primary);
+      transition: width .25s;
+    }
+    a.link-card:hover::before { width: 5px; }
+    a.link-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: var(--shadow); }
+    a.link-card:active { transform: scale(.98); }
+
+    .icon {
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+    .text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .text strong { font-weight: 500; }
+    .text small {
+      color: var(--muted);
+      font-weight: 300;
+      font-size: .82rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .arrow { color: var(--muted); transition: transform .25s, color .25s; }
+    a.link-card:hover .arrow { transform: translateX(5px); color: var(--primary-text); }
+
+    /* สีไอคอนแต่ละแพลตฟอร์ม */
+    .youtube .icon    { background: #ff0000; }
+    .ytmusic .icon    { background: radial-gradient(circle, #ff0033 55%, #c4002a 100%); }
+    .tiktok .icon     { background: #000; box-shadow: -2px -2px 0 #25f4ee inset, 2px 2px 0 #fe2c55 inset; }
+    .x .icon          { background: #000; border: 1px solid #444; }
+    .pixiv .icon      { background: #0096fa; font-weight: 800; font-size: 1.5rem; font-family: Arial, sans-serif; }
+    .facebook .icon   { background: #1877f2; }
+    .soundcloud .icon { background: linear-gradient(180deg, #ff8800, #ff3300); }
+    .spotify .icon    { background: #1db954; }
+    .email .icon      { background: linear-gradient(135deg, var(--primary), var(--primary-deep)); }
+
+    /* ================= Coming Soon ================= */
+    .link-card.soon {
+      cursor: default;
+      border-style: dashed;
+      background: var(--surface-2);
+      box-shadow: none;
+    }
+    .link-card.soon .icon { filter: grayscale(.55); opacity: .65; }
+    .link-card.soon .text strong { color: var(--muted); }
+    .soon-tag {
+      flex-shrink: 0;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: var(--primary-text);
+      background: var(--primary-soft);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    /* ================= Footer ================= */
+    .footer { text-align: center; color: var(--muted); font-size: .85rem; font-weight: 300; }
+    .footer .fa-heart { color: var(--primary); display: inline-block; animation: beat 1.2s ease infinite; }
+
+    /* ================= Animation ================= */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.2%); } }
+    @keyframes beat   { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+
+    @media (max-width: 420px) {
+      body { padding: 18px 10px 30px; }
+      .hero { border-radius: 22px; }
+      .link-card { padding: 11px 13px; gap: 12px; }
+      .icon { width: 40px; height: 40px; font-size: 1.1rem; }
+      .pixiv .icon { font-size: 1.3rem; }
+      .soon-tag { font-size: .62rem; padding: 4px 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container" id="top">
+
+    <!-- ================= HERO CARD ================= -->
+    <section class="hero" aria-label="โปรไฟล์">
+
+      <nav class="topbar" aria-label="เมนู">
+        <a href="#top" class="top-btn logo" id="logoBtn" aria-label="โลโก้">
+          <img class="logo-img" src="3.png" alt="" id="logoImg">
+          <i class="fa-solid fa-cat logo-fallback"></i>
+        </a>
+        <a href="#top" class="top-btn" aria-label="หน้าแรก"><i class="fa-solid fa-house"></i></a>
+        <a href="https://www.youtube.com/@Emir-Eins?sub_confirmation=1" target="_blank" rel="noopener" class="top-btn" aria-label="ติดตามช่อง YouTube"><i class="fa-solid fa-user-plus"></i></a>
+        <a href="#links" class="top-btn globe-chat" aria-label="ช่องทางติดตาม">
+          <i class="fa-solid fa-globe"></i><i class="fa-solid fa-comment"></i>
+        </a>
+        <button class="top-btn theme-toggle" id="themeToggle" aria-label="สลับธีมมืด/สว่าง" title="สลับธีม">
+          <i class="fa-solid fa-moon"></i><i class="fa-solid fa-sun"></i>
+        </button>
+      </nav>
+
+      <div class="hero-panel">
+        <div class="panel-bg" aria-hidden="true">
+          <span class="blob blob-1"></span>
+          <span class="blob blob-2"></span>
+          <span class="blob blob-3"></span>
+          <span class="blob blob-4"></span>
+          <span class="blob blob-5"></span>
+        </div>
+
+        <div class="char-wrap" id="charWrap">
+          <img class="char-shadow" src="2.png" alt="" aria-hidden="true">
+          <img class="character" src="2.png" alt="EMIR-EINS Kamishiro" id="charImg">
+        </div>
+
+        <img class="signature" src="1.png" alt="" aria-hidden="true" id="signImg">
+        <i class="fa-solid fa-heart heart heart-1"></i>
+        <i class="fa-regular fa-heart heart heart-2"></i>
+        <i class="fa-solid fa-heart heart heart-3"></i>
+
+        <div class="hero-text">
+          <h1 class="hero-name">EMIR-EINS</h1>
+          <p class="hero-sub">Kamishiro</p>
+          <span class="badge">CONTENT CREATOR / MUSIC PRODUCER</span>
+        </div>
+
+        <p class="quote">ทุกเสียงเพลงคือเรื่องราว ที่หัวใจอยากเล่าให้เธอฟัง</p>
+      </div>
+    </section>
+
+    <!-- ================= ลิงก์ทั้งหมด ================= -->
+    <section id="links" aria-label="ช่องทางติดตาม">
+      <h2 class="section-title"><i class="fa-solid fa-link"></i> ช่องทางติดตาม</h2>
+
+      <div class="links">
+
+        <!-- 1. YouTube -->
+        <a href="https://www.youtube.com/@Emir-Eins" target="_blank" rel="noopener" class="link-card youtube">
+          <span class="icon"><i class="fa-brands fa-youtube"></i></span>
+          <span class="text"><strong>YouTube</strong><small>@Emir-Eins</small></span>
+          <i class="fa-solid fa-arrow-right arrow"></i>
+        </a>
+
+        <!-- 2. YouTube Music -->
+        <a href="https://music.youtube.com/@emir-eins" target="_blank" rel="noopener" class="link-card ytmusic">
+          <span class="icon"><i class="fa-solid fa-circle-play"></i></span>
+          <span class="text"><strong>YouTube Music</strong><small>ฟังเพลงทั้งหมดของ EMIR-EINS 🎧</small></span>
+          <i class="fa-solid fa-arrow-right arrow"></i>
+        </a>
+
+        <!-- 3. TikTok -->
+        <a href="https://www.tiktok.com/@emireins39" target="_blank" rel="noopener" class="link-card tiktok">
+          <span class="icon"><i class="fa-brands fa-tiktok"></i></span>
+          <span class="text"><strong>TikTok</strong><small>@emireins39</small></span>
+          <i class="fa-solid fa-arrow-right arrow"></i>
+        </a>
+
+        <!-- 4. X (Twitter) -->
+        <a href="https://x.com/ShiroKamiya39" target="_blank" rel="noopener" class="link-card x">
+          <span class="icon"><i class="fa-brands fa-x-twitter"></i></span>
+          <span class="text"><strong>X (Twitter)</strong><small>@ShiroKamiya39</small></span>
+          <i class="fa-solid fa-arrow-right arrow"></i>
+        </a>
+
+        <!-- 5. Pixiv -->
+        <a href="https://www.pixiv.net/en/users/78296072" target="_blank" rel="noopener" class="link-card pixiv">
+          <span class="icon" aria-hidden="true">P</span>
+          <span class="text"><strong>Pixiv</strong><small>ผลงานภาพวาด & อาร์ตเวิร์ก 🎨</small></span>
+          <i class="fa-solid fa-arrow-right arrow"></i>
+        </a>
+
+        <!-- 6. Facebook -->
+        <a href="https://www.facebook.com/EmirEins39/" target="_blank" rel="noopener" class="link-card facebook">
+          <span class="icon"><i class="fa-brands fa-facebook-f"></i></span>
+          <span class="text"><strong>Facebook</strong><small>EmirEins39</small></span>
+          <i class="fa-solid fa-arrow-right arrow"></i>
+        </a>
+
+        <!-- 7. SoundCloud (Coming soon) -->
+        <div class="link-card soundcloud soon" aria-disabled="true">
+          <span class="icon"><i class="fa-brands fa-soundcloud"></i></span>
+          <span class="text"><strong>SoundCloud</strong><small>เร็ว ๆ นี้</small></span>
+          <span class="soon-tag">COMING SOON</span>
+        </div>
+
+        <!-- 8. Spotify (Coming soon) -->
+        <div class="link-card spotify soon" aria-disabled="true">
+          <span class="icon"><i class="fa-brands fa-spotify"></i></span>
+          <span class="text"><strong>Spotify</strong><small>เร็ว ๆ นี้</small></span>
+          <span class="soon-tag">COMING SOON</span>
+        </div>
+
+        <!-- 9. Email -->
+        <a href="mailto:shirokamiyama39@gmail.com" class="link-card email">
+          <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+          <span class="text"><strong>ติดต่องาน</strong><small>shirokamiyama39@gmail.com</small></span>
+          <i class="fa-solid fa-arrow-right arrow"></i>
+        </a>
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year">2025</span> EMIR-EINS Kamishiro · Made with <i class="fa-solid fa-heart"></i></p>
+    </footer>
+
+  </main>
+
+  <script>
+    /* ===== สลับธีม ===== */
+    const root = document.documentElement;
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    /* ===== จัดการรูปที่หาไฟล์ไม่เจอ ===== */
+    function onMissing(el, fn) {
+      el.addEventListener('error', fn);
+      if (el.complete && el.naturalWidth === 0) fn();
+    }
+    onMissing(document.getElementById('logoImg'), () => document.getElementById('logoBtn').classList.add('no-img'));
+    onMissing(document.getElementById('charImg'), () => document.getElementById('charWrap').classList.add('no-img'));
+    onMissing(document.getElementById('signImg'), () => document.getElementById('signImg').classList.add('hidden'));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
